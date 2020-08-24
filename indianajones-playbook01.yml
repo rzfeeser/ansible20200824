@@ -1,0 +1,15 @@
+---
+- name: Connect to remote Linux host and perform work
+  hosts: raiders:!chunk:!larry
+  gather_facts: false  # study this soon
+  # conection: ssh   # this is default
+
+  vars:
+          stayorgo: present
+
+  tasks:
+          - name: create the group called "sandbox"
+            group:
+                    name: sandbox
+                    state: "{{ stayorgo }}"
+            become: yes
