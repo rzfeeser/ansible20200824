@@ -2,17 +2,17 @@
 
 Good news, {{ ansible_user }}! We have another mission to accomplish:
 
-{% if planet|lower == "luna park" %}
+{% if item.planet|lower == "luna park" %}
 Delivery to Luna Park
 Contents: Prizes for the claw crane
 Delivery at: Luna Park, Moon
 
-{% elif planet|lower == "cineplex 14" %}
+{% elif item.planet|lower == "cineplex 14" %}
 Delivery to Cineplex 14
 Contents: Popcorn
 Delivery at: Cineplex 14
 
-{% elif planet|lower == "omicron persei 8" %}
+{% elif item.planet|lower == "omicron persei 8" %}
 Delivery to Omicron Persei 8
 Contents: Candy hearts
 Delivery at: Omicron Persei 8
