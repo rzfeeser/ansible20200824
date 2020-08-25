@@ -1,0 +1,64 @@
+---
+- name: Install webservice and ufw
+  hosts: planetexpress
+  become: yes # run entire playbook with sudo
+  gather_facts: yes # actually runs setup.py
+
+  tasks:
+    - name: "Install epel-release"
+      yum:
+        name: epel-release
+        state: present
+      when: ansible_distribution == "CentOS"
+
+    - name: "Update yum repos and Install Httpd and ufw"
+      yum:
+        update_cache: True
+        name:
+            - httpd
+            - ufw
+        state: latest
+      notify:
+          - restart_ufw
+      when: ansible_distribution == "CentOS"
+
+    - name: "Push Http Config for CentosOS/Redhat"
+      copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+      when: ansible_distribution == "CentOS"
+
+
+    - name: "Install apache2 on Debian and Ubuntu"
+      package:
+        name: "{{item}}"
+        state: latest
+      with_items:
+         - apache2
+         - ufw
+      notify:
+         - restart_ufw
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+     # Copy index.html into the service
+    - name: copy index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/
+        mode: 0644
+
+    - name: "Push Apache config for Dibian or Ubuntu"
+      copy:
+        src: files/apache2.conf
+        dest: /etc/apache2/apache2.conf
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+           # Copy index.html into the service
+    - name: copy index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/
+      notify:
+         - restart_apache
+         - restart_httpd
+

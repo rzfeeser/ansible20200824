@@ -1,0 +1,8 @@
+---
+- name: Setup apache2 server
+  hosts: fry
+  gather_facts: no
+  become: yes
+
+  roles:
+          - rzfeeser.build-apache2-server

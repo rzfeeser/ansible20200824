@@ -1,0 +1,14 @@
+---
+# handlers file for rzfeeser.deploy-webservice
+- name: restart_apache
+  service:
+    name: apache2
+    state: restarted
+  listen: restart_webservices
+
+## this is new, restarts mysql
+- name: restart_mysql
+  service:
+    name: mysql
+    state: restarted
+  listen: restart_webservices

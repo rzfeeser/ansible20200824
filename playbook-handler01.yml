@@ -1,0 +1,26 @@
+---
+- name: Apache server installed
+  hosts: web
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  # the package module tries to select
+  # yum or apt or pkg5 (etc) automatically
+  - name: latest Apache version installed
+    package:
+      name: apache2
+      state: latest
+
+  - name: Apache enabled and running
+    service:
+      name: apache2
+      enabled: yes
+      state: started
+
+  # Copy index.html into the service
+  - name: copy index.html
+    copy:
+      src: ~/ans/files/index.html
+      dest: /var/www/html/

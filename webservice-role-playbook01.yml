@@ -1,0 +1,13 @@
+---
+- name: Using our new webservice role
+  hosts: web
+  gather_facts: no
+  become: yes
+
+  roles:
+          - rzfeeser.deploy-webservice
+
+  tasks:
+          - name: just an example
+            debug:
+                    msg: "this is just an example"

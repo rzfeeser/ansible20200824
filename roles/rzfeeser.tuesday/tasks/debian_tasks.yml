@@ -1,0 +1,12 @@
+---
+- name: "Install apache2 on Debian and Ubuntu"
+  apt:
+    name: [apache2, ufw]
+    state: latest
+  notify:
+     - restart_ufw
+
+- name: "Push Apache config for Dibian or Ubuntu"
+  copy:
+    src: files/apache2.conf
+    dest: /etc/apache2/apache2.conf
