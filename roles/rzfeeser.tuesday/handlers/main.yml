@@ -1,2 +1,17 @@
 ---
 # handlers file for rzfeeser.tuesday
+- name: restart_apache
+  service:
+    name: apache2
+    state: restarted
+
+
+- name: restart_httpd
+  service:
+    name: httpd
+    state: restarted
+
+- name: restart_ufw
+  service:
+    name: ufw
+    state: restarted

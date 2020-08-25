@@ -18,3 +18,12 @@
   copy:
     src: files/httpd.conf
     dest: /etc/httpd/conf/httpd.conf
+
+# Copy index.html into the service
+- name: copy index.html
+  copy:
+          mode: 0644
+          src: files/index.html
+          dest: /var/www/html/
+  notify:
+     - restart_httpd

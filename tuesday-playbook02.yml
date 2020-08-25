@@ -1,0 +1,7 @@
+- name: Trying out the solution to Tuesday with a role
+  hosts: planetexpress
+  gather_facts: yes
+  become: yes
+
+  roles:
+          - rzfeeser.tuesday
