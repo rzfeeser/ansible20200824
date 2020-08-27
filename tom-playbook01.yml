@@ -1,0 +1,59 @@
+---
+- name: Learn to create linux host file
+  hosts: "{{ lhftb }}"
+  gather_facts: yes
+
+  vars:
+          # lhftb == linux host file to build
+          # simply the group name from the inventory
+          lhftb: planetexpress
+
+  tasks:
+          - name: Tasks to be performed locally
+            delegate_to: localhost
+            run_once: yes
+            block:
+                    - name: create the script that we'll convert
+                      copy:
+                              content: "#!/bin/bash\nansible-inventory -i {{ inventory_dir }} -y --list > /tmp/yamlinventory.yaml"
+                              dest: scripts/scriptconvert.sh
+                              force: yes
+                              mode: "744"
+
+                    - name: locally convert our inventory to something usable
+                      script: scripts/scriptconvert.sh
+                      args:
+                              executable: /bin/bash
+
+                    - name: pull in the YAML file we just created as var loopdata
+                      include_vars:
+                              file: /tmp/yamlinventory.yaml
+                              name: loopdata
+
+                    - name: show loopdata
+                      debug:
+                              var: loopdata
+
+                    - name: set_fact to shorten the length of the variable & convert to list for looping
+                      set_fact:
+                              hoststobuild: "{{ loopdata.all.children.deliverycompanies.children.get(lhftb).hosts | dict2items }}"
+
+                    - name: template hosts.j2 to build tmphosts (tmphosts is /etc/hosts)
+                      template:
+                              dest: tmphosts
+                              src: templates/hosts.j2
+
+          
+          - name: Copy over a new host file to /etc/hosts
+            copy:
+                    src: tmphosts
+                    #dest: /etc/hosts
+                    dest: ~/hosts  # just proof of concept not looking to
+                                   # overwrite my hosts file
+
+          - name: Remove the local tmphosts
+            file:
+                    path: tmphosts
+                    state: absent
+            delegate_to: localhost
+            run_once: yes

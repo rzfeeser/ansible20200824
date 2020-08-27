@@ -1,0 +1,44 @@
+---
+- name: Deploy a MongoDB instance for testing
+  hosts: fry
+  become: yes
+  
+  tasks:
+
+        - name: install mongoDB
+          apt:
+                  name:
+                          - mongodb
+                          - python3-pip
+                  state: present
+                  update_cache: yes
+
+        - name: install pymongo (python req to operate mongodb)
+          pip:
+                  name:
+                          - pymongo
+
+        - name: copy config file
+          copy:
+                  src: mongodb.conf
+                  dest: /etc/mongodb.conf
+                  owner: root
+                  group: root
+                  mode: 0644
+          notify:
+            - restart mongodb
+
+        - name: create /etc/security/limits.d/mongodb.conf
+          copy:
+                  src: security-mongodb.conf
+                  dest: /etc/security/limits.d/mongodb.conf
+                  owner: root
+                  group: root
+                  mode: 0644
+          notify:
+            - restart mongodb
+
+
+  handlers:
+        - name: restart mongodb
+          command: "/etc/init.d/mongodb restart"

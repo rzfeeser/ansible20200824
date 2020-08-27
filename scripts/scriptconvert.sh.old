@@ -1,0 +1,2 @@
+#!/bin/bash
+ansible-inventory -i inv/dev/hosts -y --list > /tmp/yamlinventory.yaml

@@ -1,0 +1,17 @@
+---
+- name: Run our custom module
+  hosts: localhost
+  connection: local
+
+  tasks:
+          - name: Test out our custom module  
+            issriders:
+            register: results
+
+          - name: show the results!
+            debug:
+                    var: results.lastnames
+
+          - name: Test out our custom module
+            issriders:
+                    path: /home/student/

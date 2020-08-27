@@ -1,0 +1,13 @@
+---
+- name: Provide mongoDB access to new customer
+  hosts: fry
+  become: yes
+  
+  tasks:
+
+          # Create 'burgers' database user with name 'bob' and password '12345'.
+          - mongodb_user:
+                database: lotdogs
+                name: carey
+                password: 12345
+                state: present
