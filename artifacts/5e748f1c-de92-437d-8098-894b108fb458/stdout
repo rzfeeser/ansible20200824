@@ -1,0 +1,47 @@
+[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with yaml plugin:[0m
+[1;35mWe were unable to read either as JSON nor YAML, these are the errors we got[0m
+[1;35mfrom each: JSON: Expecting value: line 1 column 2 (char 1)  Syntax Error while[0m
+[1;35mloading YAML.   found unexpected ':'  The error appears to be in[0m
+[1;35m'/home/student/ans/inv/dev/hosts': line 1, column 19, but may be elsewhere in[0m
+[1;35mthe file depending on the exact syntax problem.  The offending line appears to[0m
+[1;35mbe:   [deliverycompanies:children]                   ^ here[0m
+[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with ini plugin:[0m
+[1;35m/home/student/ans/inv/dev/hosts:3: Section [deliverycompanies:children][0m
+[1;35mincludes undefined group: ups[0m
+[1;35m[WARNING]: Unable to parse /home/student/ans/inv/dev/hosts as an inventory[0m
+[1;35msource[0m
+
+PLAY [Copying files from controller to hosts] **********************************
+
+TASK [Gathering Facts] *********************************************************
+[0;32mok: [fry][0m
+[0;32mok: [bender][0m
+[0;32mok: [zoidberg][0m
+[0;32mok: [farnsworth][0m
+
+TASK [Copy Fry's resume to hosts] **********************************************
+[1;35m[WARNING]: File '/home/farnsworth/fry.txt' created with default permissions[0m
+[1;35m'600'. The previous default was '666'. Specify 'mode' to avoid this warning.[0m
+[0;33mchanged: [farnsworth][0m
+[1;35m[WARNING]: File '/home/zoidberg/fry.txt' created with default permissions[0m
+[1;35m'600'. The previous default was '666'. Specify 'mode' to avoid this warning.[0m
+[0;33mchanged: [zoidberg][0m
+[1;35mprevious default was '666'. Specify 'mode' to avoid this warning.[0m
+[0;33mchanged: [fry][0m
+[1;35m[WARNING]: File '/home/bender/fry.txt' created with default permissions '600'.[0m
+[1;35mThe previous default was '666'. Specify 'mode' to avoid this warning.[0m
+[0;33mchanged: [bender][0m
+
+PLAY RECAP *********************************************************************
+[0;33mbender[0m                     : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mfarnsworth[0m                 : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mfry[0m                        : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mzoidberg[0m                   : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+PLAY RECAP *********************************************************************
+[0;33mbender[0m                     : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mfarnsworth[0m                 : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mfry[0m                        : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33mzoidberg[0m                   : [0;32mok=2   [0m [0;33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

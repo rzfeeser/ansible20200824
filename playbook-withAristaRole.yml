@@ -1,0 +1,19 @@
+---
+- name: Using the arista_backup role we created
+  hosts: all
+  gather_facts: yes
+
+  vars:
+    ansible_network_os: eos
+
+  vars_files:
+    - ~/switch.creds
+
+  roles:
+    - rzfeeser.arista
+
+  tasks:
+    - name: print to the screen
+      debug:
+        msg: "the roles section will run before any tasks"
+

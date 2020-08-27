@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "54f35e63-bce5-448e-a63b-1d80705a69dd", "counter": 33, "stdout": "\u001b[1;35m'600'. The previous default was '666'. Specify 'mode' to avoid this warning.\u001b[0m", "start_line": 26, "end_line": 27, "runner_ident": "5e748f1c-de92-437d-8098-894b108fb458"}

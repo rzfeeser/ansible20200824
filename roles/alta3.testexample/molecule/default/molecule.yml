@@ -1,0 +1,20 @@
+---
+# if this role depends on other roles they can be declared here
+# use the galaxy driver to download roads
+dependency:
+  name: galaxy
+# molecule will use the docker drive to build the test environment
+driver:
+  name: docker
+# build a single instance running docker.io/pycontribs/centos:8
+platforms:
+  - name: instance
+    image: docker.io/pycontribs/centos:8
+    pre_build_image: true
+# the tool used to build the environment
+provisioner:
+  name: ansible
+# the tool used to run testing
+verifier:
+  name: ansible
+

@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "9ca14d42-9cce-48ca-88a6-4fad8d8cb8e0", "counter": 8, "stdout": "\u001b[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with ini plugin:\u001b[0m", "start_line": 7, "end_line": 8, "runner_ident": "bab0058e-848a-4c51-a84f-e52f49cdda93"}

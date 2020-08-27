@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "a236839c-2f2a-4a17-81a3-92218a4c228a", "counter": 5, "stdout": "\u001b[1;35m'/home/student/ans/inv/dev/hosts': line 1, column 19, but may be elsewhere in\u001b[0m", "start_line": 4, "end_line": 5, "runner_ident": "bab0058e-848a-4c51-a84f-e52f49cdda93"}

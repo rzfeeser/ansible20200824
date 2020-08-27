@@ -1,0 +1,30 @@
+---
+# tasks file for /home/student/galaxy/roles/arista_backup
+# define current date
+- name: get the current date
+  command: date "+%Y-%m-%d"
+  register: result
+  vars:
+    ansible_connection: local
+
+# set a fact to make things easier
+- name: set a variable to make date easier
+  set_fact:
+    date_now: "{{ result.stdout }}"          
+
+# build backup directory based on the current date
+- name: Create dir "{{ date_now }}" to save current switch config backups
+  file:
+    path: "~/ans/backup/{{ date_now }}/"
+    state: directory    # Playbook will FAIL without this directory
+
+- name: Save out backed up configuration       
+  copy:
+    content: "{{ ansible_net_config }}"
+    dest: "~/ans/backup/{{ date_now }}/{{ inventory_hostname }}-config.backup"
+
+- name: Archival process
+  archive:
+    path: "~/ans/backup/{{ date_now }}/{{ inventory_hostname }}-config.backup"
+    remove: True     # removes the original file
+

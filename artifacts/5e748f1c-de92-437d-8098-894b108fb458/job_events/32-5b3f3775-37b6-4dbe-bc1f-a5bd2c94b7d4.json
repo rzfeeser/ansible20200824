@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "5b3f3775-37b6-4dbe-bc1f-a5bd2c94b7d4", "counter": 32, "stdout": "\u001b[1;35m[WARNING]: File '/home/zoidberg/fry.txt' created with default permissions\u001b[0m", "start_line": 25, "end_line": 26, "runner_ident": "5e748f1c-de92-437d-8098-894b108fb458"}

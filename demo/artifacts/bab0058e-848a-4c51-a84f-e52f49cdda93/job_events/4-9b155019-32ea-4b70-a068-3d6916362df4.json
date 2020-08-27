@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "9b155019-32ea-4b70-a068-3d6916362df4", "counter": 4, "stdout": "\u001b[1;35mloading YAML.   found unexpected ':'  The error appears to be in\u001b[0m", "start_line": 3, "end_line": 4, "runner_ident": "bab0058e-848a-4c51-a84f-e52f49cdda93"}

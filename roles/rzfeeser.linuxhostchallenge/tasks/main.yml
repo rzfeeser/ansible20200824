@@ -1,0 +1,56 @@
+---
+- name: Tasks to be performed locally
+  delegate_to: localhost
+  run_once: yes
+  block:
+
+          - name: I will take INI to YAML conversion bash script to go, please!
+            copy:
+                    content: "#!/bin/bash\nansible-inventory -i {{ inventory_dir }} -y --list > /tmp/yamlinventory.yaml"
+                    dest: scriptconvert.sh
+                    force: yes
+                    mode: "744"
+
+          - name: ini inventory to yaml inventory magic
+            script: scriptconvert.sh
+            args:
+                    executable: /bin/bash
+
+          - name: remove the scriptconvert.sh
+            file:
+                    state: absent
+                    path: scriptconvert.sh
+
+          - name: turn the YAML inventory file we just created into the var loopdata
+            include_vars:
+                    file: /tmp/yamlinventory.yaml
+                    name: loopdata
+
+          - name: remove the convereted yaml inventory file
+            file:
+                    state: absent
+                    path: /tmp/yamlinventory.yaml
+
+          - name: set_fact to shorten the length of the variable & convert to list for looping
+            set_fact:
+                    hoststobuild: "{{ loopdata.all.children.deliverycompanies.children.get(lhftb).hosts | dict2items }}"
+
+          - name: template hosts.j2 to build tmphosts (tmphosts is /etc/hosts)
+            template:
+                    dest: tmphosts
+                    src: templates/hosts.j2
+
+
+- name: Copy over a new host file to /etc/hosts
+  copy:
+          src: tmphosts
+          #dest: /etc/hosts
+          dest: ~/hosts  # just proof of concept not looking to
+                         # overwrite my hosts file
+
+- name: Remove the local tmphosts
+  file:
+          path: tmphosts
+          state: absent
+  delegate_to: localhost
+  run_once: yes

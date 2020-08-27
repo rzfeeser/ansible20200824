@@ -1,0 +1,5 @@
+---
+# defaults file for rzfeeser.linuxhostchallenge
+# lhftb == linux host file to build
+# This is the group from the inventory that we want to target for turning into a Linux host file
+lhftb: planetexpress

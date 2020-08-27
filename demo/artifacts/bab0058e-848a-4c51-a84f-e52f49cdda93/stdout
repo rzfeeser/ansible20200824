@@ -1,0 +1,15 @@
+[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with yaml plugin:[0m
+[1;35mWe were unable to read either as JSON nor YAML, these are the errors we got[0m
+[1;35mfrom each: JSON: Expecting value: line 1 column 2 (char 1)  Syntax Error while[0m
+[1;35mloading YAML.   found unexpected ':'  The error appears to be in[0m
+[1;35m'/home/student/ans/inv/dev/hosts': line 1, column 19, but may be elsewhere in[0m
+[1;35mthe file depending on the exact syntax problem.  The offending line appears to[0m
+[1;35mbe:   [deliverycompanies:children]                   ^ here[0m
+[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with ini plugin:[0m
+[1;35m/home/student/ans/inv/dev/hosts:3: Section [deliverycompanies:children][0m
+[1;35mincludes undefined group: ups[0m
+[1;35m[WARNING]: Unable to parse /home/student/ans/inv/dev/hosts as an inventory[0m
+[1;35msource[0m
+[0;32mlocalhost | SUCCESS => {[0m
+[0;32m    "msg": "hello"[0m
+[0;32m}[0m

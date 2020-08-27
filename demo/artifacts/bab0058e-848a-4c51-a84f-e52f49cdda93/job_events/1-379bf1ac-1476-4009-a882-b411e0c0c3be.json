@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "379bf1ac-1476-4009-a882-b411e0c0c3be", "counter": 1, "stdout": "\u001b[1;35m[WARNING]:  * Failed to parse /home/student/ans/inv/dev/hosts with yaml plugin:\u001b[0m", "start_line": 0, "end_line": 1, "runner_ident": "bab0058e-848a-4c51-a84f-e52f49cdda93"}

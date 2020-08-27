@@ -6,6 +6,7 @@
   vars:
           # lhftb == linux host file to build
           # simply the group name from the inventory
+          parentgroup: deliverycompanies
           lhftb: planetexpress
 
   tasks:
@@ -13,30 +14,37 @@
             delegate_to: localhost
             run_once: yes
             block:
-                    - name: create the script that we'll convert
+
+                    - name: I will take INI to YAML conversion bash script to go, please!
                       copy:
                               content: "#!/bin/bash\nansible-inventory -i {{ inventory_dir }} -y --list > /tmp/yamlinventory.yaml"
-                              dest: scripts/scriptconvert.sh
+                              dest: scriptconvert.sh
                               force: yes
                               mode: "744"
 
-                    - name: locally convert our inventory to something usable
-                      script: scripts/scriptconvert.sh
+                    - name: ini inventory to yaml inventory magic
+                      script: scriptconvert.sh
                       args:
                               executable: /bin/bash
 
-                    - name: pull in the YAML file we just created as var loopdata
+                    - name: remove the scriptconvert.sh
+                      file:
+                              state: absent
+                              path: scriptconvert.sh
+
+                    - name: turn the YAML inventory file we just created into the var loopdata
                       include_vars:
                               file: /tmp/yamlinventory.yaml
                               name: loopdata
 
-                    - name: show loopdata
-                      debug:
-                              var: loopdata
+                    - name: remove the convereted yaml inventory file
+                      file:
+                              state: absent
+                              path: /tmp/yamlinventory.yaml
 
                     - name: set_fact to shorten the length of the variable & convert to list for looping
                       set_fact:
-                              hoststobuild: "{{ loopdata.all.children.deliverycompanies.children.get(lhftb).hosts | dict2items }}"
+                              hoststobuild: "{{ loopdata.all.children.get(parentgroup).children.get(lhftb).hosts | dict2items }}"
 
                     - name: template hosts.j2 to build tmphosts (tmphosts is /etc/hosts)
                       template:

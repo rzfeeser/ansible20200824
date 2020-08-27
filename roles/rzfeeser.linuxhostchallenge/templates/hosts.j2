@@ -1,0 +1,3 @@
+{% for host in hoststobuild %}
+{{ host.value.ansible_host }}  {{ host.key }}
+{% endfor %}

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include alta3.testexample"
+      include_role:
+        name: "alta3.testexample"

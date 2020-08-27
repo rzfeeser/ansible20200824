@@ -1,0 +1,1 @@
+{"event": "verbose", "uuid": "a579c7bf-6fc7-498b-8fd0-370a5b91542e", "counter": 11, "stdout": "\u001b[1;35m[WARNING]: Unable to parse /home/student/ans/inv/dev/hosts as an inventory\u001b[0m", "start_line": 10, "end_line": 11, "runner_ident": "bab0058e-848a-4c51-a84f-e52f49cdda93"}

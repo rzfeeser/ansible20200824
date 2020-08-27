@@ -1,0 +1,22 @@
+! Command: show running-config
+! device: ans-2742-sw-01 (vEOS, EOS-4.22.0F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname ans-2742-sw-01
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$krwutams3MqaqfkP$ZH7MEOoNmZEVctRMOFjWpcGl0cvpZImdw6cmITuq0wY3aXBwglf9yHCfruRI4XJG3dafLz/jso/NHq.4Er30Y/
+!
+interface Management1
+   ip address dhcp
+   dhcp client accept default-route
+!
+no ip routing
+!
+end

@@ -1,0 +1,12 @@
+---
+- name: Learn to create linux host file
+  hosts: "{{ lhftb }}"
+  gather_facts: yes
+
+  vars:
+          # lhftb == linux host file to build
+          # simply the group name from the inventory
+          lhftb: planetexpress
+
+  roles:
+          - rzfeeser.linuxhostchallenge
