@@ -1,0 +1,13 @@
+- name: copy keys into remote hosts
+  hosts: planetexpress:!farnsworth
+
+  vars:
+          ansible_ssh_pass: alta3
+
+  tasks:
+  - name: Set authorized key taken from file
+    become: yes
+    authorized_key:
+      user: rzfeeser
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}" # public key on the controller
